@@ -1,7 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { AddToCart } from '../../Redux/CartSlice/CartSlice'
 
 const SingleProduct = ({ filter }) => {
+  const dispatch = useDispatch()
+  const AddCart = (item) => {     // func add to cart
+    dispatch(AddToCart(item))
+  }
   return (
     <div className='container'>
       <div className='Home-Products'>
@@ -19,7 +25,7 @@ const SingleProduct = ({ filter }) => {
               </div>
               <p className='desc'>{item.description.substring(0, 100)}</p>
               <div className='add-product'>
-                <button className='Add'>ADD TO CART</button>
+                <button className='Add' onClick={() => AddCart(item)}>ADD TO CART</button>
               </div>
             </div>
           </div>
